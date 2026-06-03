@@ -124,9 +124,9 @@
 
         <form onsubmit="handleSendMessage(event)" class="relative flex items-end gap-2">
           <!-- プレースホルダーとキーバインドを変更 (Cmd/Ctrl + Enter) -->
-          <textarea id="chat-input" placeholder="追加したソースについて質問する... (Cmd/Ctrl + Enter で送信)" class="w-full bg-white border border-gray-300 rounded-xl py-3 pl-4 pr-12 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 shadow-sm transition-all" rows="1" style="min-height: 52px; max-height: 150px;" oninput="autoResizeTextarea(this)" onkeydown="handleTextareaKeydown(event)"></textarea>
-          <button id="send-button" type="submit" disabled class="absolute right-2 bottom-2 p-2 rounded-lg flex items-center justify-center transition-all bg-gray-100 text-gray-400 cursor-not-allowed">
-            <i data-lucide="send" class="w-4.5 h-4.5"></i>
+          <textarea id="chat-input" placeholder="追加したソースについて質問する... (Cmd/Ctrl + Enter で送信)" class="w-full bg-white border border-gray-300 rounded-xl py-3 pl-4 pr-14 md:pr-16 text-sm md:text-base resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 shadow-sm transition-all" rows="1" style="min-height: 52px; max-height: 150px;" oninput="autoResizeTextarea(this)" onkeydown="handleTextareaKeydown(event)"></textarea>
+          <button id="send-button" type="submit" disabled class="absolute right-2 bottom-2 w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center transition-all bg-gray-100 text-gray-400 cursor-not-allowed">
+            <i data-lucide="send" class="w-4 h-4 md:w-5 md:h-5 ml-0.5"></i>
           </button>
         </form>
       </div>
@@ -289,10 +289,10 @@
         const sendBtn = document.getElementById('send-button');
         if (chatInput.value.trim() && !isAILoading) {
           sendBtn.disabled = false;
-          sendBtn.className = "absolute right-2 bottom-2 p-2 rounded-lg flex items-center justify-center transition-all bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm";
+          sendBtn.className = "absolute right-2 bottom-2 w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center transition-all bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm";
         } else {
           sendBtn.disabled = true;
-          sendBtn.className = "absolute right-2 bottom-2 p-2 rounded-lg flex items-center justify-center transition-all bg-gray-100 text-gray-400 cursor-not-allowed";
+          sendBtn.className = "absolute right-2 bottom-2 w-9 h-9 md:w-10 md:h-10 rounded-lg flex items-center justify-center transition-all bg-gray-100 text-gray-400 cursor-not-allowed";
         }
       });
     });
@@ -512,7 +512,8 @@
           body: JSON.stringify({
             model: model,
             messages: messagesPayload,
-            temperature: 0.3
+            temperature: 0.3,
+            max_tokens: 4096
           })
         });
         
